@@ -9,6 +9,12 @@ source:
   fn: libunistring-{{ version }}.tar.xz
   url: http://ftpmirror.gnu.org/libunistring/libunistring-{{ version }}.tar.xz
   sha256: {{ sha256 }}
+  patches:
+    # 5/25/2021 (PJY): Got a failure during 'make check' for 'test-thread_create'.
+    # Found this issue thread: https://bugs.launchpad.net/ubuntu/+source/libunistring/+bug/1813587/comments/10
+    # which points to this upstream patch: https://git.savannah.gnu.org/gitweb/?p=gnulib.git;a=commitdiff;h=cca32830b57e91f837c01d15b8732f23ff97fc36
+    # This is the upstream patch.
+    - 0001_force_linking_with_-lpthread.patch  # [linux and aarch64]
 
 build:
   number: 0
@@ -21,7 +27,6 @@ requirements:
   build:
     - {{ compiler('c') }}
     - make
-  host:
 
 test:
   commands:
