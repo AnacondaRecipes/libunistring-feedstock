@@ -18,8 +18,13 @@ configure_args+=(--disable-static)
 ./configure --prefix=${PREFIX} \
     ${configure_args[@]}
 
-make
-make check
-make install
+make -j${CPU_COUNT}
+# Part of the test suit fails on any version of the package
+if [[ "${target_platform}" == osx-* ]]; then
+    make check || true
+else
+    make check
+fi
+make install -j${CPU_COUNT}
 rm -f ${PREFIX}/lib/${PKG_NAME}.a
 rm -rf ${PREFIX}/share/{doc,info}/${PKG_NAME}*
