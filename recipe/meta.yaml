@@ -11,7 +11,7 @@ source:
 
 build:
   number: 0
-  skip: True  # [win]
+  skip: true  # [win]
   run_exports:
     # https://abi-laboratory.pro/?view=timeline&l=libunistring
     - {{ pin_subpackage('libunistring', min_pin='x', max_pin='x') }}
@@ -34,7 +34,7 @@ about:
   license_family: LGPL
   summary: C unicode string manipulation library
   description: |
-    This library provides functions for manipulating Unicode strings and 
+    This library provides functions for manipulating Unicode strings and
     for manipulating C strings according to the Unicode standard.
   dev_url: https://git.savannah.gnu.org/gitweb/?p=libunistring.git
   doc_url: https://www.gnu.org/software/libunistring/manual/libunistring.html
